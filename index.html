@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theditor Kowshik | Scriptwriter, Graphic Designer, Video Editor</title>
+<meta name="description" content="Scriptwriting, graphic design and video editing, all handled by one person. Lower cost, faster delivery, one point of contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c1014;--panel:#141a20;--line:#242d36;--text:#e9e4d8;--muted:#9aa3ab;--accent:#d9a441;
+--head:'Bricolage Grotesque','Segoe UI',Arial,sans-serif;--body:'Instrument Sans','Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font:400 1.05rem/1.6 var(--body);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+section{padding:5.5rem 0}
+h1,h2,h3{font-family:var(--head);line-height:1.05;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:2rem}
+.btn{display:inline-block;font:500 1rem var(--body);padding:.95rem 1.7rem;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:#14100a;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--accent)}
+nav{padding:1.4rem 0}
+nav .wrap{display:flex;justify-content:space-between;align-items:center}
+nav b{font:800 1.1rem var(--head)}
+nav a{text-decoration:none;color:var(--muted);font-size:.95rem}
+nav a:hover{color:var(--text)}
+.hero{min-height:78vh;display:flex;align-items:center;padding:3rem 0 5rem}
+.hero h1{font-size:clamp(3.2rem,12vw,8.5rem);font-weight:800;max-width:11ch}
+.hero p{max-width:34ch;font-size:clamp(1.1rem,2.4vw,1.5rem);color:var(--muted);margin:1.6rem 0 2.2rem}
+.pitch{padding:0;border-block:1px solid var(--accent);background:var(--panel)}
+.pitch .wrap{padding:4rem 0}
+.pitch p{font:800 clamp(1.5rem,3.6vw,2.7rem)/1.18 var(--head);letter-spacing:-.015em;max-width:30ch}
+.pitch p span{color:var(--muted);font-weight:500}
+.tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.tabs button{font:500 .95rem var(--body);padding:.55rem 1.1rem;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--text);color:var(--bg);border-color:var(--text)}
+#grid{column-count:2;column-gap:14px}
+@media(min-width:900px){#grid{column-count:3}}
+.card{display:block;position:relative;width:100%;break-inside:avoid;margin:0 0 14px;padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel);cursor:pointer;color:inherit;text-align:left;text-decoration:none;max-height:640px}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover img{transform:scale(1.04)}
+.card .t{position:absolute;inset:auto 0 0 0;padding:2.5rem 1rem .9rem;font:500 .95rem var(--body);background:linear-gradient(transparent,rgba(0,0,0,.82))}
+.card.script{aspect-ratio:auto;padding:1.3rem}
+.card.script h3{font-size:1.2rem;margin-bottom:.5rem}
+.card.script p{color:var(--muted);font-size:.95rem}
+.empty{color:var(--muted)}
+.steps{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;border-top:1px solid var(--line);padding-top:1rem}
+.steps li::before{content:counter(s);font:800 1.6rem var(--head);color:var(--accent);display:block}
+.steps h3{font-size:1.2rem;margin:.3rem 0}
+.steps p,.about p{color:var(--muted)}
+.about p{max-width:60ch;font-size:1.15rem}
+.quotes{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.quotes blockquote{border-left:2px solid var(--accent);padding-left:1rem}
+.quotes cite{display:block;color:var(--muted);margin-top:.5rem;font-style:normal}
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(2rem,6vw,4rem)}
+#reveal{margin-top:2rem;display:grid;gap:.8rem;font:500 clamp(1.2rem,3vw,1.7rem) var(--head)}
+#reveal a{text-decoration:none;width:fit-content;border-bottom:1px solid var(--line)}
+#reveal a:hover{border-color:var(--accent)}
+#reveal .soc{display:flex;gap:1.4rem;flex-wrap:wrap;font-size:1.05rem;font-family:var(--body)}
+footer{padding:2rem 0;color:var(--muted);font-size:.9rem}
+dialog{border:0;background:none;padding:0;max-width:100vw;max-height:100vh;overflow:visible;margin:auto}
+dialog::backdrop{background:rgba(5,7,9,.92)}
+.stage{width:min(92vw,calc(84vh * var(--w) / var(--h)));aspect-ratio:var(--w)/var(--h);background:#000}
+.stage iframe,.stage img{width:100%;height:100%;border:0;object-fit:contain;display:block}
+#x{position:absolute;top:-2.6rem;right:0;background:none;border:0;color:var(--text);font:500 1rem var(--body);cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Theditor Kowshik</b><a href="#contact">Contact</a></div></nav>
+
+<header class="hero"><div class="wrap">
+  <h1>Theditor Kowshik</h1>
+  <p>I write the script, design the visuals and edit the final video.</p>
+  <a class="btn" href="#work">View My Work</a>
+</div></header>
+
+<div class="pitch"><div class="wrap"><p>Scriptwriting, graphic design, and video editing, all handled by one person. <span>That means lower cost, faster delivery, and one point of contact for your entire project.</span></p></div></div>
+
+<section id="work"><div class="wrap">
+  <h2>Selected work</h2>
+  <div class="tabs" id="tabs"></div>
+  <div id="grid"></div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>How I work</h2>
+  <ol class="steps">
+    <li><h3>Brief</h3><p>You tell me the goal, audience and references. I confirm the plan before starting.</p></li>
+    <li><h3>Script</h3><p>I write the script first, so the visuals and edit follow a clear story.</p></li>
+    <li><h3>Design and edit</h3><p>Thumbnails, graphics and the cut are made together, so everything matches.</p></li>
+    <li><h3>Review and delivery</h3><p>You review, I revise, and you get final files ready to post.</p></li>
+  </ol>
+</div></section>
+
+<section id="quotes" hidden><div class="wrap"><h2>What clients say</h2><div class="quotes" id="q"></div></div></section>
+
+<section id="about"><div class="wrap about">
+  <h2>About</h2>
+  <p>I'm Kowshik, a freelance creative. I take a project from first idea to finished video: the script, the design and the edit. Working with one person means fewer handoffs, quicker turnaround and a single person to talk to.</p>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2>Let's work together</h2>
+  <p style="color:var(--muted);max-width:44ch;margin-bottom:1.6rem">Tell me what you're making. I'll reply with how I can help.</p>
+  <button class="btn" id="open" aria-expanded="false" aria-controls="reveal">Show contact details</button>
+  <div id="reveal" hidden>
+    <a href="tel:+919494909862">+91 94949 09862</a>
+    <a href="mailto:kowshikreddy0307@gmail.com">kowshikreddy0307@gmail.com</a>
+    <div class="soc" id="soc"></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">&copy; <span id="yr"></span> Theditor Kowshik</div></footer>
+
+<dialog id="lb" aria-label="Project viewer"><button id="x">Close</button><div class="stage" id="stage"></div></dialog>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const labels={video:'Video editing',design:'Graphic design',script:'Scripts'};
+let projects=[];
+$('#yr').textContent=new Date().getFullYear();
+
+$('#open').onclick=e=>{const r=$('#reveal'),o=r.hidden;r.hidden=!o;e.target.setAttribute('aria-expanded',o);e.target.textContent=o?'Hide contact details':'Show contact details'};
+
+fetch('projects.json').then(r=>r.json()).then(d=>{
+  projects=d.projects||[];
+  const cats=Object.keys(labels).filter(c=>projects.some(p=>p.category===c));
+  $('#tabs').innerHTML=['all',...cats].map((c,i)=>`<button data-c="${c}" aria-pressed="${i==0}">${c=='all'?'All':labels[c]}</button>`).join('');
+  $('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+    document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-pressed',x==b));show(b.dataset.c)};
+  show('all');
+  const s=d.socials||{};
+  $('#soc').innerHTML=Object.entries(s).filter(([,u])=>u).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(k[0].toUpperCase()+k.slice(1))}</a>`).join('');
+  if((d.testimonials||[]).length){$('#quotes').hidden=false;
+    $('#q').innerHTML=d.testimonials.map(t=>`<blockquote>${esc(t.quote)}<cite>${esc(t.name)}${t.role?', '+esc(t.role):''}</cite></blockquote>`).join('')}
+}).catch(()=>{$('#grid').innerHTML='<p class="empty">Work could not load. Check that projects.json is valid JSON.</p>'});
+
+function ratio(p,def){const [w,h]=String(p.ratio||def).split(':').map(Number);return(w>0&&h>0)?[w,h]:def.split(':').map(Number)}
+
+function show(c){
+  const list=projects.map((p,i)=>[p,i]).filter(([p])=>c==='all'||p.category===c);
+  $('#grid').innerHTML=list.map(([p,i])=>{
+    if(p.category==='script')
+      return `<a class="card script" ${p.link?`href="${esc(p.link)}" target="_blank" rel="noopener"`:''}><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></a>`;
+    const [w,h]=ratio(p,p.category==='design'?'4:5':'16:9');
+    const src=p.thumb||(p.category==='design'?p.image:(p.youtube&&!p.youtube.startsWith('PASTE')?`https://i.ytimg.com/vi/${esc(p.youtube)}/hqdefault.jpg`:''));
+    return `<button class="card" data-i="${i}" style="aspect-ratio:${w}/${h}">${src?`<img src="${esc(src)}" alt="" loading="lazy" onerror="this.remove()">`:''}<span class="t">${esc(p.title)}</span></button>`}).join('')||'<p class="empty">Nothing here yet.</p>';
+}
+
+$('#grid').onclick=e=>{
+  const b=e.target.closest('.card[data-i]');if(!b)return;
+  const p=projects[b.dataset.i],[w,h]=ratio(p,p.category==='design'?'4:5':'16:9'),st=$('#stage');
+  st.style.setProperty('--w',w);st.style.setProperty('--h',h);
+  if(p.category==='design')st.innerHTML=`<img src="${esc(p.image)}" alt="${esc(p.title)}">`;
+  else if(p.youtube&&!p.youtube.startsWith('PASTE'))st.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${esc(p.youtube)}?autoplay=1&rel=0" title="${esc(p.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  else st.innerHTML='<p style="padding:2rem;color:#9aa3ab">Add this video\'s YouTube ID in projects.json.</p>';
+  $('#lb').showModal();
+};
+const close=()=>{$('#lb').close();$('#stage').innerHTML=''};
+$('#x').onclick=close;
+$('#lb').addEventListener('click',e=>{if(e.target.id==='lb')close()});
+$('#lb').addEventListener('close',()=>{$('#stage').innerHTML=''});
+</script>
+</body>
+</html>
