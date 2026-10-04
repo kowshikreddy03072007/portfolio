@@ -39,7 +39,7 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5r
 .hero h1{font-size:clamp(2.6rem,4.7vw,5.2rem);font-weight:800;line-height:1}
 .hero p{max-width:46ch;font-size:clamp(1.15rem,1.6vw,1.45rem);color:var(--muted);margin:2rem 0 2.6rem}
 #feat{justify-self:end;width:100%}
-#feat .card{margin:0 0 0 auto;width:min(100%,calc(72vh * var(--w) / var(--h)));max-height:76vh}
+#feat .card{margin:0 0 0 auto;width:min(100%,calc(64vh * var(--w) / var(--h)))}
 .pitch{padding:0;border-block:1px solid var(--line);background:var(--panel);position:relative;overflow:hidden}
 .pitch::after{content:"";position:absolute;top:0;bottom:0;left:0;width:2px;background:var(--accent);opacity:0}
 .pitch.in::after{animation:sweep 1.8s ease-out forwards}
@@ -51,17 +51,25 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5r
 .tabs button{font:500 1rem var(--body);padding:.65rem 1.4rem;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s}
 .tabs button:hover{color:var(--text);border-color:var(--muted)}
 .tabs button[aria-pressed=true]{background:var(--text);color:var(--bg);border-color:var(--text)}
-#grid{column-count:4;column-gap:20px}
-@media(max-width:1300px){#grid{column-count:3}}
-.card{display:block;position:relative;width:100%;break-inside:avoid;margin:0 0 20px;padding:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:linear-gradient(160deg,#1b1f25,#101216);cursor:pointer;color:inherit;text-align:left;text-decoration:none;max-height:720px;transition:border-color .3s}
-.card:hover{border-color:var(--accent)}
-.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.card:hover img{transform:scale(1.05)}
-.card .play{position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(11,12,14,.6);border:1px solid rgba(236,232,223,.5);display:grid;place-items:center;transition:background .3s,transform .3s}
-.card .play::after{content:"";margin-left:5px;border-left:16px solid var(--text);border-block:10px solid transparent}
+.grp{margin-bottom:4.5rem}
+.grp:last-child{margin-bottom:0}
+.grp h3{font:500 .95rem var(--body);letter-spacing:.02em;color:var(--muted);margin-bottom:1.6rem;display:flex;align-items:center;gap:1.2rem}
+.grp h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.g{display:grid;gap:28px;align-items:start}
+.g.p{grid-template-columns:repeat(auto-fill,minmax(210px,250px));justify-content:start}
+.g.l{grid-template-columns:repeat(auto-fill,minmax(min(520px,100%),1fr))}
+.g.s{grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr))}
+.card{display:block;width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;text-decoration:none}
+.th{display:block;position:relative;aspect-ratio:var(--w)/var(--h);border-radius:10px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#1b1f25,#101216);transition:border-color .3s,transform .4s,box-shadow .4s}
+.card:hover .th{border-color:var(--accent);transform:translateY(-5px);box-shadow:0 20px 44px rgba(0,0,0,.55)}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .th img{transform:scale(1.05)}
+.card .play{position:absolute;top:50%;left:50%;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;background:rgba(11,12,14,.6);border:1px solid rgba(236,232,223,.5);display:grid;place-items:center;transition:background .3s,transform .3s}
+.card .play::after{content:"";margin-left:5px;border-left:15px solid var(--text);border-block:9px solid transparent}
 .card:hover .play{background:var(--accent);transform:scale(1.1)}
-.card .t{position:absolute;inset:auto 0 0 0;padding:3rem 1.1rem 1rem;font:500 1rem var(--body);background:linear-gradient(transparent,rgba(0,0,0,.85))}
-.card.script{padding:1.6rem;max-height:none}
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1rem .2rem 0;font:500 1.02rem/1.35 var(--body)}
+.cap small{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.card.script{border:1px solid var(--line);border-radius:10px;padding:1.8rem;background:var(--panel)}
 .card.script h3{font-size:1.3rem;margin-bottom:.6rem}
 .card.script p{color:var(--muted);font-size:1rem}
 .empty{color:var(--muted)}
@@ -126,8 +134,9 @@ dialog::backdrop{background:rgba(5,6,8,.93)}
  .pitch .wrap{padding:4rem 0}
  .svc,.tools{grid-template-columns:1fr}
  .steps{grid-template-columns:repeat(2,1fr)}
- #grid{column-count:2;column-gap:14px}
- .card{margin-bottom:14px}
+ .g{gap:16px}
+ .g.p{grid-template-columns:repeat(2,1fr)}
+ .grp{margin-bottom:3rem}
  .card .play{width:48px;height:48px;margin:-24px 0 0 -24px}
 }
 @media(max-width:560px){.steps{grid-template-columns:1fr}}
@@ -239,7 +248,7 @@ function ratio(p){let r=p.ratio;
 function cardHtml(p,i){
   const [w,h]=ratio(p),id=ytId(p.youtube);
   const src=p.thumb||(p.category==='design'?p.image:(id?`https://i.ytimg.com/vi/${id}/hqdefault.jpg`:''));
-  return `<button class="card" data-i="${i}" style="aspect-ratio:${w}/${h};--w:${w};--h:${h}">${src?`<img src="${esc(src)}" alt="" loading="lazy" onerror="this.remove()">`:''}${p.category==='design'?'':'<span class="play"></span>'}<span class="t">${esc(p.title)}</span></button>`}
+  return `<button class="card" data-i="${i}" style="--w:${w};--h:${h}"><span class="th">${src?`<img src="${esc(src)}" alt="" loading="lazy" onerror="this.remove()">`:''}${p.category==='design'?'':'<span class="play"></span>'}</span><span class="cap"><span>${esc(p.title)}</span><small>${w}:${h}</small></span></button>`}
 
 fetch('projects.json').then(r=>r.json()).then(d=>{
   projects=d.projects||[];
@@ -257,11 +266,14 @@ fetch('projects.json').then(r=>r.json()).then(d=>{
     $('#q').innerHTML=d.testimonials.map(t=>`<blockquote>${esc(t.quote)}<cite>${esc(t.name)}${t.role?', '+esc(t.role):''}</cite></blockquote>`).join('')}
 }).catch(()=>{$('#grid').innerHTML='<p class="empty">Work could not load. Check that projects.json is valid JSON.</p>'});
 
+function scriptHtml(p){return `<a class="card script" ${p.link?`href="${esc(p.link)}" target="_blank" rel="noopener"`:''}><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></a>`}
 function show(c){
-  const list=projects.map((p,i)=>[p,i]).filter(([p])=>c==='all'||p.category===c);
-  $('#grid').innerHTML=list.map(([p,i])=>p.category==='script'
-    ?`<a class="card script" ${p.link?`href="${esc(p.link)}" target="_blank" rel="noopener"`:''}><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></a>`
-    :cardHtml(p,i)).join('')||'<p class="empty">Nothing here yet.</p>';
+  const items=projects.map((p,i)=>[p,i]).filter(([p])=>c==='all'||p.category===c);
+  const vp=[],ls=[],ss=[];
+  items.forEach(([p,i])=>{if(p.category==='script')ss.push([p,i]);else{const [w,h]=ratio(p);(w/h<=1?vp:ls).push([p,i])}});
+  const multi=[vp,ls,ss].filter(a=>a.length).length>1;
+  const blk=(a,cls,label,fn)=>a.length?`<div class="grp">${multi?`<h3>${label}</h3>`:''}<div class="g ${cls}">${a.map(([p,i])=>fn(p,i)).join('')}</div></div>`:'';
+  $('#grid').innerHTML=blk(vp,'p','Vertical',cardHtml)+blk(ls,'l','Widescreen',cardHtml)+blk(ss,'s','Scripts',scriptHtml)||'<p class="empty">Nothing here yet.</p>';
 }
 
 function openItem(e){
