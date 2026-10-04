@@ -1,16 +1,14 @@
 {
   "socials": {
-    "instagram": "",
-    "youtube": "",
-    "linkedin": ""
+    "instagram": "https://www.instagram.com/sunnyyyy_.b",
+    "youtube": "https://www.youtube.com/@theeditorkowshik"
   },
   "testimonials": [],
   "projects": [
-    { "title": "Reel 1", "category": "video", "youtube": "PAM9-rSB8ig", "ratio": "9:16", "featured": true },
-    { "title": "Reel 2", "category": "video", "youtube": "PASTE_LINK_2", "ratio": "9:16" },
-    { "title": "Horizontal video", "category": "video", "youtube": "PASTE_LINK_3", "ratio": "16:9" },
-    { "title": "Reel 3", "category": "video", "youtube": "PASTE_LINK_4", "ratio": "9:16" },
-    { "title": "Reel 4", "category": "video", "youtube": "PASTE_LINK_5", "ratio": "9:16" },
-    { "title": "Reel 5", "category": "video", "youtube": "PASTE_LINK_6", "ratio": "9:16" }
+    { "title": "We can't raise our kids anymore", "category": "video", "youtube": "wAowEwY4LSY", "ratio": "9:16" },
+    { "title": "Anime: emotions on drugs", "category": "video", "youtube": "YTcFKXWHTdk", "ratio": "9:16" },
+    { "title": "Sleep is so important", "category": "video", "youtube": "kchoEl9cFts", "ratio": "16:9" },
+    { "title": "Lot of space in creative industry", "category": "video", "youtube": "PAM9-rSB8ig", "ratio": "9:16" },
+    { "title": "Delink in Telugu", "category": "video", "youtube": "JEMN3EvDCQg", "ratio": "9:16" }
   ]
 }
