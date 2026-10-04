@@ -6,10 +6,6 @@
   },
   "testimonials": [],
   "projects": [
-    { "title": "Project one", "category": "video", "youtube": "PASTE_ID_1", "ratio": "9:16" },
-    { "title": "Project two", "category": "video", "youtube": "PASTE_ID_2", "ratio": "9:16" },
-    { "title": "Project three", "category": "video", "youtube": "PASTE_ID_3", "ratio": "16:9" },
-    { "title": "Project four", "category": "video", "youtube": "PASTE_ID_4", "ratio": "9:16" },
-    { "title": "Project five", "category": "video", "youtube": "PASTE_ID_5", "ratio": "9:16" }
+    { "title": "Project one", "category": "video", "youtube": "PAM9-rSB8ig", "ratio": "9:16" }
   ]
 }
