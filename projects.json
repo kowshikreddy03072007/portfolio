@@ -6,6 +6,11 @@
   },
   "testimonials": [],
   "projects": [
-    { "title": "Project one", "category": "video", "youtube": "PAM9-rSB8ig", "ratio": "9:16" }
+    { "title": "Reel 1", "category": "video", "youtube": "PAM9-rSB8ig", "ratio": "9:16", "featured": true },
+    { "title": "Reel 2", "category": "video", "youtube": "PASTE_LINK_2", "ratio": "9:16" },
+    { "title": "Horizontal video", "category": "video", "youtube": "PASTE_LINK_3", "ratio": "16:9" },
+    { "title": "Reel 3", "category": "video", "youtube": "PASTE_LINK_4", "ratio": "9:16" },
+    { "title": "Reel 4", "category": "video", "youtube": "PASTE_LINK_5", "ratio": "9:16" },
+    { "title": "Reel 5", "category": "video", "youtube": "PASTE_LINK_6", "ratio": "9:16" }
   ]
 }
