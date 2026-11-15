@@ -81,6 +81,7 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5r
 .card.script h3{font-size:1.3rem;margin-bottom:.6rem}
 .card.script p{color:var(--muted);font-size:1rem}
 .empty{color:var(--muted)}
+.ph{position:absolute;inset:0;display:grid;place-items:center;padding:1rem;text-align:center;color:var(--muted);font-size:.9rem}
 .workcta{margin-top:5rem;padding:2.4rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
 .workcta p{font:800 clamp(1.4rem,2.4vw,2rem)/1.15 var(--head);letter-spacing:-.02em;max-width:26ch}
 .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
@@ -361,7 +362,7 @@ let media='';
 if(p.file&&!p.thumb)media=`<video src="${esc(p.file)}#t=0.1" muted loop playsinline preload="metadata" onloadedmetadata="fit(this)"></video>`;
 else if(src)media=`<img src="${esc(src)}" alt="" loading="lazy" onerror="this.remove()">`;
 return `<button class="card" data-i="${i}" style="--w:${w};--h:${h}">
-<span class="th">${media}${p.category==='design'?'':'<span class="play"></span>'}</span>
+<span class="th">${media||'<span class="ph">Add a YouTube link or video file in projects.json</span>'}${p.category==='design'?'':'<span class="play"></span>'}</span>
 <span class="cap"><span>${esc(p.title)}</span><small>${p._r?p._r.join(':'):(p.ratio||w+':'+h)}</small></span>
 </button>`;
 }
@@ -389,7 +390,7 @@ $('#quotes').hidden=false;
 $('#q').innerHTML=d.testimonials.map(t=>`<blockquote>${esc(t.quote)}<cite>${esc(t.name)}${t.role?', '+esc(t.role):''}</cite></blockquote>`).join('');
 }
 })
-.catch(()=>{$('#grid').innerHTML='<p class="empty">Work could not load. Check that projects.json is valid JSON and that the page is opened through a web server.</p>'});
+.catch(err=>{console.error(err);$('#grid').innerHTML=location.protocol==='file:'?'<p class="empty">Videos cannot load when index.html is opened as a file. Upload both files to your host, or run a local server (for example VS Code Live Server).</p>':'<p class="empty">Work could not load. Make sure projects.json is in the same folder as index.html and is valid JSON.</p>'});
 
 function scriptHtml(p){
 return `<a class="card script" ${p.link?`href="${esc(p.link)}" target="_blank" rel="noopener"`:''}><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p></a>`;
