@@ -38,7 +38,7 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5r
 .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:5rem;align-items:center;min-height:calc(100vh - 14rem)}
 .badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;font-size:.95rem;color:var(--muted);margin-bottom:2rem}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.hero h1{font-size:clamp(2.6rem,4.7vw,5.2rem);font-weight:800;line-height:1}
+.hero h1{font-size:clamp(2.1rem,4.7vw,5.2rem);font-weight:800;line-height:1}
 .hero p{max-width:46ch;font-size:clamp(1.15rem,1.6vw,1.45rem);color:var(--muted);margin:2rem 0 2.6rem}
 .stats{display:flex;gap:2.6rem;flex-wrap:wrap;margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line)}
 .stats b{display:block;font:800 1.6rem var(--head);letter-spacing:-.02em}
@@ -65,6 +65,11 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1.5r
 .g{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
 .g::after{content:"";flex:999 1 0}
 .g .card[data-i]{flex:calc(var(--w)/var(--h)) 1 calc(var(--w)/var(--h)*var(--row));min-width:min(100%,calc(var(--w)/var(--h)*140px))}
+.g.v{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,230px));gap:28px 24px;justify-content:start;align-items:start}
+.g.v::after{display:none}
+.g.v .cap{justify-content:flex-start}
+.g.v .cap small{display:none}
+.g.v .cap span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .g.s{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr))}
 .g.s::after{display:none}
 .card{display:block;width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;text-decoration:none}
@@ -139,18 +144,30 @@ dialog::backdrop{background:rgba(5,6,8,.93)}
 .bar .nv{display:flex;gap:1.2rem}
 @media(max-width:1000px){
 :root{--pad:1.25rem;--row:190px}
+.g.v{--row:240px}
 section{padding:5rem 0}
-.links a:not(.cta){display:none}
+.links a:not(.cta):not(:first-child){display:none}
 .brand span{display:none}
 .hero{padding:3rem 0 4rem;min-height:0}
 .hero .wrap,.pitch .wrap,.about,.contact .wrap{grid-template-columns:1fr;gap:2.5rem;min-height:0}
-#feat .card{margin:0 auto;width:min(100%,calc(70vh * var(--w) / var(--h)))}
+#feat .card{margin:0 auto;width:min(100%,calc(46vh * var(--w) / var(--h)))}
 .pitch .wrap{padding:4rem 0}
 .svc,.tools{grid-template-columns:1fr}
 .steps{grid-template-columns:repeat(2,1fr)}
 .g{gap:16px}
 .grp{margin-bottom:3rem}
 .card .play{width:48px;height:48px;margin:-24px 0 0 -24px}
+}
+@media(max-width:700px){
+.g.l .card[data-i]{flex:1 1 100%}
+.g.v{display:flex;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(var(--pad)*-1);padding:0 var(--pad) .6rem;scroll-padding-inline:var(--pad);-webkit-overflow-scrolling:touch}
+.g.v .card[data-i]{flex:0 0 44vw;min-width:0;scroll-snap-align:start}
+.stats{gap:1.4rem;margin-top:2rem}
+.stats b{font-size:1.25rem}
+.stats span{font-size:.85rem}
+.hero p{margin:1.4rem 0 1.8rem}
+.workcta{padding:1.6rem}
+.bar button,.bar a{padding:.6rem .3rem}
 }
 @media(max-width:560px){.steps{grid-template-columns:1fr}.wa span{display:none}.wa{padding:.9rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
@@ -374,6 +391,7 @@ projects=d.projects||[];
 const cats=Object.keys(labels).filter(c=>projects.some(p=>p.category===c));
 const n=c=>c==='all'?projects.length:projects.filter(p=>p.category===c).length;
 $('#tabs').innerHTML=['all',...cats].map((c,i)=>`<button data-c="${c}" aria-pressed="${i==0}">${c=='all'?'All':labels[c]}<small>${n(c)}</small></button>`).join('');
+$('#tabs').style.display=cats.length<2?'none':'';
 $('#tabs').onclick=e=>{
 const b=e.target.closest('button');if(!b)return;
 document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-pressed',x==b));
@@ -405,8 +423,8 @@ vis=[...land,...vert].map(([,i])=>i);
 const multi=[land,vert,ss].filter(a=>a.length).length>1;
 const blk=(a,label,fn,cls='')=>a.length?`<div class="grp">${multi?`<h3>${label}</h3>`:''}<div class="g ${cls}">${a.map(([p,i])=>fn(p,i)).join('')}</div></div>`:'';
 $('#grid').innerHTML=
-blk(land,'Widescreen',cardHtml)+
-blk(vert,'Vertical and square',cardHtml)+
+blk(land,'Videos',cardHtml,'l')+
+blk(vert,'Reels and Shorts',cardHtml,'v')+
 blk(ss,'Scripts',scriptHtml,'s')||
 '<p class="empty">Nothing here yet.</p>';
 }
